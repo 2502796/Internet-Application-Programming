@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savanna Brew Café - Westlands, Nairobi</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================
+       SAVANNA BREW CAFÉ - MASTER STYLESHEET
+       ========================================== */
+    :root {
+      --primary: #6F4E37;   /* Coffee Brown */
+      --cream: #F5E9DA;     /* Cream */
+      --accent: #D9822B;    /* Savanna Orange */
+      --dark: #2B1B12;      /* Dark Text */
+      --white: #FFFFFF;     /* White */
+      --shadow: 0 4px 16px rgba(43, 27, 18, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: var(--cream);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--primary);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover, a:focus {
+      color: var(--accent);
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Header & Navigation (Flexbox) */
+    header {
+      background-color: var(--white);
+      border-bottom: 3px solid var(--accent);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-text span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-links button {
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .nav-links button:hover, .nav-links button.active {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    /* Main Container & Views */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active-view {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Buttons & CTAs */
+    .btn {
+      display: inline-block;
+      background-color: var(--accent);
+      color: var(--white);
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn:hover, .btn:focus {
+      background-color: var(--primary);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(43, 27, 18, 0.2);
+    }
+
+    /* Home View Styles */
+    .hero {
+      background: linear-gradient(rgba(43,27,18,0.55), rgba(43,27,18,0.55)), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: var(--white);
+      text-align: center;
+      padding: 6rem 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      color: var(--white);
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+      color: var(--cream);
+    }
+
+    .features-grid {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .feature-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .feature-card-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .home-cta-section {
+      text-align: center;
+      background-color: var(--white);
+      padding: 3rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    /* About Us View Styles */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .about-image img {
+      width: 100%;
+      max-width: 400px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+      display: block;
+      margin: 0 auto;
+      border: 5px solid var(--accent);
+    }
+
+    .values-list {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      margin-bottom: 3rem;
+    }
+
+    .values-list ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .values-list li {
+      margin-bottom: 0.75rem;
+    }
+
+    blockquote {
+      background: var(--white);
+      border-left: 5px solid var(--accent);
+      padding: 2rem;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    blockquote cite {
+      display: block;
+      margin-top: 1rem;
+      font-style: normal;
+      font-size: 0.95rem;
+      font-family: 'Open Sans', Arial, sans-serif;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Menu Tables View Styles */
+    .menu-section {
+      margin-bottom: 3rem;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .menu-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .menu-table th, .menu-table td {
+      padding: 1rem 1.25rem;
+    }
+
+    .menu-table thead {
+      background-color: var(--primary);
+      color: var(--white);
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .menu-table tbody tr:nth-child(even) {
+      background-color: rgba(245, 233, 218, 0.4);
+    }
+
+    .menu-table tbody tr:hover {
+      background-color: rgba(217, 130, 43, 0.12);
+    }
+
+    .menu-table td:last-child, .menu-table th:last-child {
+      text-align: right;
+    }
+
+    /* Gallery View Styles (CSS Grid) */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item figcaption {
+      padding: 1rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* Contact & Reservations View Styles */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-info-card, .reservation-form-container {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-info-card table {
+      width: 100%;
+      margin-top: 1rem;
+      border-collapse: collapse;
+    }
+
+    .contact-info-card th, .contact-info-card td {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+
+    fieldset {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    legend {
+      font-weight: 600;
+      padding: 0 0.5rem;
+      color: var(--primary);
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .radio-group label {
+      font-weight: normal;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 3rem 2rem 1.5rem 2rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    footer h3 {
+      color: var(--cream);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    footer p, footer li {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer a {
+      color: var(--cream);
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 1.5rem auto 0 auto;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Success Message Box */
+    .success-msg {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      border: 1px solid #c3e6cb;
+      font-weight: 600;
+    }
+
+    /* Responsive Media Queries */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.25rem;
+      }
+      .nav-links button {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem;
+      }
+      .features-grid {
+        flex-direction: column;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .about-image img {
+        margin: 0 auto 1.5rem auto;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .reservation-form-container {
+        order: -1;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header & Navigation (Flexbox) -->
+  <header>
+    <div class="nav-container">
+      <div class="logo-text">
+        ☕ Savanna <span>Brew</span>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><button onclick="switchView('home')" id="nav-home" class="active">Home</button></li>
+          <li><button onclick="switchView('about')" id="nav-about">About Us</button></li>
+          <li><button onclick="switchView('menu')" id="nav-menu">Menu</button></li>
+          <li><button onclick="switchView('gallery')" id="nav-gallery">Gallery</button></li>
+          <li><button onclick="switchView('contact')" id="nav-contact">Contact & Reservations</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main>
+    <!-- VIEW 1: HOME -->
+    <section id="home-view" class="view-section active-view">
+      <div class="hero">
+        <h1>Welcome to Savanna</h1>
+        <p>Your cosy corner in Westlands where every cup tells a story. We roast and brew coffee from the highlands of Nyeri and Kiambu, and pair it with fresh pastries baked every morning. Come in, relax, and taste the difference.</p>
+        <button onclick="switchView('menu')" class="btn">Explore Our Menu</button>
+      </div>
+
+      <section>
+        <h2 style="text-align: center; margin-bottom: 2rem;">Customer Favourites</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80" alt="Caffe Latte">
+            <div class="feature-card-content">
+              <div>
+                <h3>Caffe Latte</h3>
+                <p>Smooth espresso with creamy, perfectly textured steamed milk.</p>
+              </div>
+              <p style="font-weight: bold; color: var(--primary); margin-top: 1rem;">KES 320</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Cappuccino">
+            <div class="feature-card-content">
+              <div>
+                <h3>Cappuccino</h3>
+                <p>Rich espresso combined with steamed milk and thick microfoam.</p>
+              </div>
+              <p style="font-weight: bold; color: var(--primary); margin-top: 1rem;">KES 300</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Butter Croissant">
+            <div class="feature-card-content">
+              <div>
+                <h3>Butter Croissant</h3>
+                <p>Flaky, golden-brown pastry baked fresh every single morning.</p>
+              </div>
+              <p style="font-weight: bold; color: var(--primary); margin-top: 1rem;">KES 250</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-cta-section">
+        <h2>Plan Your Visit</h2>
+        <p style="margin-bottom: 1.5rem;">Looking for a quiet spot to work, catch up with friends, or host a small gathering? Reserve a table with us today!</p>
+        <button onclick="switchView('contact')" class="btn">Book a Table</button>
+      </section>
+    </section>
+
+    <!-- VIEW 2: ABOUT US -->
+    <section id="about-view" class="view-section">
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1580933073521-dc49ac0d4e6a?auto=format&fit=crop&w=600&q=80" alt="Amina Otieno, Founder">
+        </div>
+        <div class="about-text">
+          <h2>Our Story</h2>
+          <p>Savanna Brew Café opened in 2019 with one small espresso machine and a big dream: to celebrate Kenyan coffee. Founder Amina Otieno grew up on her grandparents' coffee farm in Nyeri and wanted to bring that flavour to the city.</p>
+          <p style="margin-top: 1rem;">Today the café supports local farmers, uses eco-friendly packaging and hosts community events every month.</p>
+        </div>
+      </div>
+
+      <div class="values-list">
+        <h2>Our Core Values</h2>
+        <p>We are guided by our commitment to excellence, community, and sustainability:</p>
+        <ul>
+          <li><strong>Quality:</strong> Only freshly roasted, single-origin Kenyan beans.</li>
+          <li><strong>Community:</strong> Fair prices for farmers and a welcoming space for all.</li>
+          <li><strong>Sustainability:</strong> Compostable cups and zero-waste pastries.</li>
+        </ul>
+      </div>
+
+      <section>
+        <blockquote>
+          "Coffee is more than just a morning routine in Kenya—it is our heritage, our hard work, and our pride in a cup. Every time you drink Savanna Brew, you taste generations of passion."
+          <cite>— Amina Otieno, Founder & Head Roaster</cite>
+        </blockquote>
+      </section>
+    </section>
+
+    <!-- VIEW 3: MENU -->
+    <section id="menu-view" class="view-section">
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <h2>Our Menu</h2>
+        <p>Handcrafted drinks and fresh pastries made with locally sourced ingredients. Prices in Kenya Shillings (KES).</p>
+      </div>
+
+      <!-- Hot Drinks -->
+      <div class="menu-section">
+        <h3>Hot Drinks</h3>
+        <div class="table-wrapper">
+          <table class="menu-table">
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price (KES)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Espresso</td><td>Rich, bold single shot</td><td>200</td></tr>
+              <tr><td>Cappuccino</td><td>Espresso with steamed milk and foam</td><td>300</td></tr>
+              <tr><td>Caffe Latte</td><td>Smooth espresso with creamy milk</td><td>320</td></tr>
+              <tr><td>Kenyan Chai</td><td>Spiced milk tea</td><td>250</td></tr>
+              <tr><td>Hot Chocolate</td><td>Dark chocolate with whipped cream</td><td>350</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Cold Drinks -->
+      <div class="menu-section">
+        <h3>Cold Drinks</h3>
+        <div class="table-wrapper">
+          <table class="menu-table">
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price (KES)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Iced Latte</td><td>Espresso over ice with cold milk</td><td>350</td></tr>
+              <tr><td>Cold Brew</td><td>Steeped for 18 hours</td><td>380</td></tr>
+              <tr><td>Passion Fruit Cooler</td><td>Fresh passion fruit, mint and soda</td><td>300</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Bakery and Snacks -->
+      <div class="menu-section">
+        <h3>Bakery and Snacks</h3>
+        <div class="table-wrapper">
+          <table class="menu-table">
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price (KES)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Butter Croissant</td><td>Flaky and freshly baked</td><td>250</td></tr>
+              <tr><td>Banana Bread</td><td>Moist, with roasted walnuts</td><td>280</td></tr>
+              <tr><td>Samosa (2 pieces)</td><td>Beef or vegetable</td><td>200</td></tr>
+              <tr><td>Chocolate Brownie</td><td>Rich and fudgy</td><td>300</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: GALLERY -->
+    <section id="gallery-view" class="view-section">
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <h2>Photo Gallery</h2>
+        <p>A peek inside our cozy café, our artisan brews, and fresh daily bakes.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Latte art">
+          <figcaption>Artisan Latte Art</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80" alt="Cozy seating area">
+          <figcaption>Cozy Corner Seating</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Fresh pastries">
+          <figcaption>Daily Fresh Pastries</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Pour-over setup">
+          <figcaption>Single-Origin Pour Over</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=600&q=80" alt="Customers chatting">
+          <figcaption>Vibrant Community Vibe</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1611854779393-1b2da9d401fe?auto=format&fit=crop&w=600&q=80" alt="Coffee beans">
+          <figcaption>Kenyan Highlands Beans</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=600&q=80" alt="Iced cold brew">
+          <figcaption>Refreshing Cold Brew</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=600&q=80" alt="Café storefront">
+          <figcaption>Our Westlands Storefront</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- VIEW 5: CONTACT & RESERVATIONS -->
+    <section id="contact-view" class="view-section">
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <h2>Contact & Reservations</h2>
+        <p>Get in touch with us or reserve your table for an unforgettable coffee experience.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-card">
+          <h3>Get In Touch</h3>
+          <p style="margin-top: 0.75rem;"><strong>Address:</strong> 14 Coffee Lane, Westlands, Nairobi</p>
+          <p style="margin-top: 0.5rem;"><strong>Phone:</strong> <a href="tel:+254700123456">+254 700 123 456</a></p>
+          <p style="margin-top: 0.5rem;"><strong>Email:</strong> <a href="mailto:hello@savannabrew.example">hello@savannabrew.example</a></p>
+          <p style="margin-top: 0.5rem;"><strong>Social:</strong> Instagram @savannabrew, Facebook /savannabrewcafe</p>
+
+          <h3 style="margin-top: 2rem;">Opening Hours</h3>
+          <table>
+            <thead>
+              <tr><th scope="col">Day</th><th scope="col">Hours</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Monday to Friday</td><td>7:00 AM to 9:00 PM</td></tr>
+              <tr><td>Saturday</td><td>8:00 AM to 10:00 PM</td></tr>
+              <tr><td>Sunday</td><td>9:00 AM to 6:00 PM</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="reservation-form-container">
+          <h3>Book a Table / Send Enquiry</h3>
+          <div id="successMessage" class="success-msg">
+            Thank you! Your reservation has been successfully submitted. We look forward to welcoming you to Savanna Brew Café.
+          </div>
+          <form id="reservationForm" onsubmit="handleReservation(event)">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+254 700 000 000">
+            </div>
+
+            <div class="form-group">
+              <label for="res-date">Date *</label>
+              <input type="date" id="res-date" name="res_date" required>
+            </div>
+
+            <div class="form-group">
+              <label for="res-time">Time *</label>
+              <input type="time" id="res-time" name="res_time" required>
+            </div>
+
+            <div class="form-group">
+              <label for="guests">Number of Guests</label>
+              <select id="guests" name="guests">
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6 Guests</option>
+                <option value="7">7 Guests</option>
+                <option value="8">8 Guests</option>
+                <option value="9">9 Guests</option>
+                <option value="10">10 Guests</option>
+              </select>
+            </div>
+
+            <fieldset>
+              <legend>Occasion</legend>
+              <div class="radio-group">
+                <label><input type="radio" name="occasion" value="Casual" checked> Casual</label>
+                <label><input type="radio" name="occasion" value="Birthday"> Birthday</label>
+                <label><input type="radio" name="occasion" value="Business"> Business</label>
+              </div>
+            </fieldset>
+
+            <div class="form-group">
+              <label for="requests">Special Requests / Message</label>
+              <textarea id="requests" name="requests" rows="4" placeholder="Let us know if you have any dietary requirements or special requests..."></textarea>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%;">Submit Reservation</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h3>Visit Us</h3>
+        <p>14 Coffee Lane, Westlands</p>
+        <p>Nairobi, Kenya</p>
+        <p>Phone: <a href="tel:+254700123456">+254 700 123 456</a></p>
+      </div>
+      <div>
+        <h3>Opening Hours</h3>
+        <p>Mon - Fri: 7:00 AM - 9:00 PM</p>
+        <p>Saturday: 8:00 AM - 10:00 PM</p>
+        <p>Sunday: 9:00 AM - 6:00 PM</p>
+      </div>
+      <div>
+        <h3>Connect With Us</h3>
+        <ul>
+          <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram: @savannabrew</a></li>
+          <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook: /savannabrewcafe</a></li>
+          <li>Email: <a href="mailto:hello@savannabrew.example">hello@savannabrew.example</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Savanna Brew Café. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Interactive Client-side Tab Switcher & Form Handler -->
+  <script>
+    function switchView(viewId) {
+      // Hide all views
+      const views = document.querySelectorAll('.view-section');
+      views.forEach(v => v.classList.remove('active-view'));
+
+      // Remove active class from all nav buttons
+      const navButtons = document.querySelectorAll('.nav-links button');
+      navButtons.forEach(btn => btn.classList.remove('active'));
+
+      // Show selected view
+      const targetView = document.getElementById(viewId + '-view');
+      if (targetView) {
+        targetView.classList.add('active-view');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Highlight active button
+      const targetBtn = document.getElementById('nav-' + viewId);
+      if (targetBtn) {
+        targetBtn.classList.add('active');
+      }
+    }
+
+    function handleReservation(event) {
+      event.preventDefault();
+      const form = document.getElementById('reservationForm');
+      const successBox = document.getElementById('successMessage');
+      
+      // Hide form and show success message smoothly
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+      
+      // Reset form
+      form.reset();
+    }
+  </script>
+
+</body>
+</html>
